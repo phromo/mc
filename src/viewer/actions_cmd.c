@@ -601,7 +601,7 @@ mcview_handle_key (WView * view, int key)
         return MSG_HANDLED;
 
 #ifdef MC_ENABLE_DEBUGGING_CODE
-    if (c == 't')
+    if (key == 't')
     {                           /* mnemonic: "test" */
         mcview_ccache_dump (view);
         return MSG_HANDLED;
