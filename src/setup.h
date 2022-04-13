@@ -99,6 +99,7 @@ extern gboolean output_starts_shell;
 extern gboolean use_file_to_check_type;
 extern gboolean file_op_compute_totals;
 extern gboolean editor_ask_filename_before_edit;
+extern gboolean auto_cd_new_terminal;
 
 extern panels_options_t panels_options;
 

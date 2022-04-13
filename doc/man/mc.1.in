@@ -1977,6 +1977,11 @@ to
 .BR No .
 This option is disabled by default.
 .PP
+.I Auto cd new terminal.
+If this option is enabled, mc tells its current directory to the terminal.
+Some graphical terminal emulators use this information to open new windows
+or tabs in that directory.
+.PP
 .I Auto save setup.
 If this option is enabled, when you exit Midnight Commander, the
 configurable options of Midnight Commander are saved in the

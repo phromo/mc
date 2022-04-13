@@ -914,11 +914,11 @@ init_subshell_precmd (char *precmd, size_t buff_size)
  * Use following technique:
  *
  * printf(1) with format string containing a single conversion specifier,
- * "b", and an argument which contains a copy of the string passed to 
+ * "b", and an argument which contains a copy of the string passed to
  * subshell_name_quote() with all characters, except digits and letters,
  * replaced by the backslash-escape sequence \0nnn, where "nnn" is the
  * numeric value of the character converted to octal number.
- * 
+ *
  *   cd "`printf '%b' 'ABC\0nnnDEF\0nnnXYZ'`"
  *
  * N.B.: Use single quotes for conversion specifier to work around
@@ -1367,7 +1367,7 @@ do_subshell_chdir (const vfs_path_t * vpath, gboolean update_prompt)
             cwd =
                 vfs_path_to_str_flags (subshell_get_cwd_from_current_panel (), 0,
                                        VPF_STRIP_PASSWORD);
-            vfs_print_message (_("Warning: Cannot change to %s.\n"), cwd);
+            // vfs_print_message (_("Warning: Cannot change to %s.\n"), cwd);
             g_free (cwd);
         }
     }

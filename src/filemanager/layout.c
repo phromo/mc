@@ -791,6 +791,7 @@ setup_panels (void)
         widget_set_size (WIDGET (the_hint), 0, 0, 0, 0);
 
     update_xterm_title_path ();
+	update_terminal_cwd ();
 }
 
 /* --------------------------------------------------------------------------------------------- */
@@ -1437,6 +1438,37 @@ update_xterm_title_path (void)
         if (!mc_global.tty.alternate_plus_minus)
             numeric_keypad_mode ();
         (void) fflush (stdout);
+    }
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+/** Tell the current directory to the terminal so it can open new tabs there */
+void
+update_terminal_cwd (void)
+{
+    if (mc_global.tty.xterm_flag && auto_cd_new_terminal && vfs_current_is_local ())
+    {
+        const gchar *host;
+        char *path;
+        int pathlen, i;
+        unsigned char c;
+
+        host = g_get_host_name ();
+        path = vfs_path_to_str_flags (current_panel->cwd_vpath, 0, VPF_NONE);
+        pathlen = strlen (path);
+
+        fprintf (stdout, "\33]7;file://%s", host);
+        for (i = 0; i < pathlen; i++) {
+            c = path[i];
+	    if ((c >= '0' && c <= '9') || ((c & ~0x20) >= 'A' && (c & ~0x20) <= 'Z') || index("/_.-()~", c) != NULL)
+                fprintf(stdout, "%c", c);
+	    else
+	        fprintf(stdout, "%%%02X", c);
+        }
+        fprintf (stdout, "\7");
+        (void) fflush (stdout);
+        g_free (path);
     }
 }
 

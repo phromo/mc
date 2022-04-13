@@ -116,6 +116,9 @@ gboolean confirm_view_dir = FALSE;
 /* Ask file name before start the editor */
 gboolean editor_ask_filename_before_edit = FALSE;
 
+/* Tell cwd to the terminal so it can open new tabs there */
+gboolean auto_cd_new_terminal = 0;
+
 panel_view_mode_t startup_left_mode;
 panel_view_mode_t startup_right_mode;
 
@@ -355,6 +358,7 @@ static const struct
     { "mcview_remember_file_position", &mcview_remember_file_position },
     { "auto_fill_mkdir_name", &auto_fill_mkdir_name },
     { "copymove_persistent_attr", &copymove_persistent_attr },
+    { "auto_cd_new_terminal", &auto_cd_new_terminal },
     { NULL, NULL }
 };
 
